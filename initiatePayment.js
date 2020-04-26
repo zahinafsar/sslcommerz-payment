@@ -7,11 +7,16 @@ const config = {
   }
 }
 
+const store = {
+  "id": "<REPLACE WITH YOURS>",
+  "password": "<REPLACE WITH YOURS>"
+}
+
 module.exports = async ({ name, email, address='Gulshan', city='Dhaka', country='Bangladesh', phone },uid, tranId, amount) => {
   const reqParams = {
     //credentials
-    store_id: "zahin5ea43cff62d5b",
-    store_passwd: `${process.env.storeKey}`,
+    store_id: store.id,
+    store_passwd: store.password,
     //transection info
     ipn_url: "http://localhost:4000/sslcommerz/ipn",
     currency: "BDT",

@@ -8,8 +8,8 @@ const config = {
 }
 
 const store = {
-  "id": "<REPLACE WITH YOURS>",
-  "password": "<REPLACE WITH YOURS>"
+  "id": "zahin5ea43cff62d5b",
+  "password": `${process.env.storeKey}`
 }
 
 module.exports = async ({ name, email, address='Gulshan', city='Dhaka', country='Bangladesh', phone },uid, tranId, amount) => {

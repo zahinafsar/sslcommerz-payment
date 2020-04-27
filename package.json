@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"nodemon app.js\" \"npm start --prefix client\"",
-    "install": "concurrently \"npm install\" \"npm install --prefix client\"",
+    "install-c": "concurrently \"npm install\" \"npm install --prefix client\"",
     "deploy": "concurrently \"node app.js\" \"npm start --prefix client\""
   },
   "author": "",

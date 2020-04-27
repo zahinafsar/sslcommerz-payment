@@ -47,6 +47,7 @@ app.post("/sslcommerz/ipn", async (req, res) => {
   // Validating payment
   if (req.body.status == "VALID" || req.body.status == "VALIDATED") {
     const resp = validatePayment(req.body.val_id);
+    console.log(resp);
     if(resp.statue === "VALID") {
       // EVERYTHING WAS RIGHT DO WORK WITH YOUR SYSTEM NOW
     }

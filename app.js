@@ -14,7 +14,7 @@ const validatePayment = async (validationId) => {
     parmas: {
       val_id: validationId,
       store_id: "zahin5ea43cff62d5b",
-      store_passwd: "zahin5ea43cff62d5b@ssl",
+      store_passwd: "zahin5ea43cff62d5b@ssl"
     },
   });
   return data;

@@ -4,7 +4,7 @@ const axios = require("axios");
 const initiatePayment = require("./initiatePayment");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-require("dotenv").config();
+
 
 const validatePayment = async (validationId) => {
   const url =

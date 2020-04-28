@@ -2,7 +2,7 @@
   "name": "payment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start":"node app.js",
     "heroku-postbuild": "cd client && npm i && npm run build",

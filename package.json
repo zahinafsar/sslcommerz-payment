@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "cd client && npm i && npm run build"
     "dev": "concurrently \"nodemon app.js\" \"npm start --prefix client\"",
     "install-c": "concurrently \"npm install\" \"npm install --prefix client\"",
     "deploy": "concurrently \"node app.js\" \"npm start --prefix client\""

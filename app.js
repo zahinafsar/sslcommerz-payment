@@ -6,19 +6,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-const validatePayment = async (validationId) => {
-  const url =
-    "https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php";
-
-  const {data} = await axios(url, {
-    parmas: {
-      val_id: validationId,
-      store_id: "zahin5ea43cff62d5b",
-      store_passwd: "zahin5ea43cff62d5b@ssl"
-    },
-  });
-  return data;
-};
 
 app.post("/sslcommerz", async (req, res) => {
   const user = {
@@ -32,9 +19,6 @@ app.post("/sslcommerz", async (req, res) => {
     "485454",
     req.body.amount
   );
-  // Send session for payment
-  console.log(paymentSession);
-
   console.log("SSLCOMMERZ- Payment Initiation:", paymentSession.status);
   res.json({
     message: "GWURL",
@@ -43,28 +27,47 @@ app.post("/sslcommerz", async (req, res) => {
   });
 });
 
-app.post("/sslcommerz/ipn", async (req, res) => {
-  // Validating payment
-  if (req.body.status == "VALID" || req.body.status == "VALIDATED") {
-    const resp = validatePayment(req.body.val_id);
-    console.log(resp);
-    if(resp.statue === "VALID") {
+
+
+
+  app.post("/sslcommerz/ipn", async (req, res) => {
+    if (req.body.status == "VALID") {
+      const url ="https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php";
+        const data = await axios(url, {
+        parmas: {
+          val_id: req.body.val_id,
+          store_id: "zahin5ea43cff62d5b",
+          store_passwd: "zahin5ea43cff62d5b@ssl"
+        }
+      });
+      if(data.status === 200) {
       // EVERYTHING WAS RIGHT DO WORK WITH YOUR SYSTEM NOW
-    }
-  }
-  console.log("IPN", req.body);
-  res.send("working");
-});
+      console.log(req.body.amount+" tk recharged successfully");
+      }
+    }else(
+      console.log("account recharge "+req.body.status)
+    )
+  });
+
+
+
 
 //Payment redirections
 app.post("/sslcommerz/:status", (req, res) => {
-  console.log("REDIRECT CALLED: ", res.body);
+  ("REDIRECT CALLED: ", req.params.status);
   
   if (req.params.status == "success")
     return res.redirect("http://localhost:3000/sslcommerz/success");
   if (req.params.status == "failed" || req.params.status == "cancel")
-    return res.redirect("http://localhost:3000/sslcommerz/success");
+    return res.redirect("http://localhost:3000/sslcommerz/failed");
 });
+
+
+
+
+
+
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {

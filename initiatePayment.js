@@ -30,7 +30,7 @@ module.exports = async (
     store_id: store.id,
     store_passwd: store.password,
     //transection info
-    ipn_url: "http://localhost:4000/sslcommerz/ipn",
+    ipn_url: "https://0b1da683.ngrok.io/sslcommerz/ipn",
     currency: "BDT",
     success_url: "http://localhost:4000/sslcommerz/success",
     fail_url: "http://localhost:4000/sslcommerz/failed",
@@ -56,7 +56,6 @@ module.exports = async (
       qs.stringify(reqParams),
       config
     );
-    console.log("success");
     return data;
   } catch (error) {
     console.log("Error: Connecting with sslcommerz");

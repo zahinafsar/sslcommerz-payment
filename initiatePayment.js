@@ -1,6 +1,6 @@
 const axios = require("axios");
 const qs = require("querystring");
-require("dotenv").config();
+
 const config = {
   headers: {
     "Content-Type": "application/x-www-form-urlencoded",
@@ -9,7 +9,7 @@ const config = {
 
 const store = {
   id: "zahin5ea43cff62d5b",
-  password: process.env.STORE_KEY || 'zahin5ea43cff62d5b@ssl',
+  password: 'zahin5ea43cff62d5b@ssl',
 };
 
 module.exports = async (
